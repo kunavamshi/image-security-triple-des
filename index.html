@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Security by Triple DES Encryption and Decryption</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#00f2fe">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="glass-container">
+    <div class="title-bar">
+      <img src="https://img.icons8.com/ios-filled/100/lock.png" alt="Project Logo" class="logo">
+      <div>
+        <h1>🔐 Image Security by Triple DES Encryption and Decryption</h1>
+        <p>Secure your images with cryptographic power</p>
+      </div>
+    </div>
+
+    <input type="file" id="fileInput" accept="image/*" onchange="showUploadConfirm()" />
+    <input type="text" id="keyInput" placeholder="Enter your secret key 🔑" />
+
+    <div id="uploadConfirmBox" class="upload-confirmation"></div>
+
+    <div class="buttons">
+      <button onclick="encryptImage()">Encrypt</button>
+      <button onclick="decryptImage()">Decrypt</button>
+      <button onclick="clearVault()">Clear</button>
+    </div>
+
+    <textarea id="encryptedText" placeholder="Encrypted text will appear here..." readonly></textarea>
+    <button id="downloadBtn" onclick="downloadEncryptedText()">💾 Download Encrypted Text</button>
+
+    <textarea id="decryptInput" placeholder="Paste encrypted text here..." oninput="showDecryptDownloadBtn()"></textarea>
+    <button id="downloadDecryptedBtn" onclick="decryptImage()" style="display:none;">⬇️ Download Decrypted Image</button>
+
+    <div id="animationBox" class="animation-box"></div>
+    <div id="resultArea"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log("Service Worker Registered:", reg.scope))
+          .catch(err => console.error("Service Worker Error:", err));
+      });
+    }
+  </script>
+  <footer class="footer">
+    <p>📌 Developed by <strong>Kuna Vamshi</strong></p>
+    <p>📧 Contact: <a href="mailto:vamshikuna905@gmail.com">vamshikuna905@gmail.com</a></p>
+    <p>🔗 LinkedIn: <a href="https://linkedin.com/in/kunavamshi" target="_blank">kunavamshi</a></p>
+  </footer>  
+</body>
+</html>
